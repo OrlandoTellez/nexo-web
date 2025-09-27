@@ -1,0 +1,169 @@
+---
+import { Heart, Menu, X } from 'lucide-astro';
+
+const navigationItems = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Paciente App', href: '/paciente-app' },
+  { name: 'Cómo Funciona', href: '/#como-funciona' },
+  { name: 'Beneficios', href: '/#beneficios' },
+  { name: 'Testimonios', href: '/#testimonios' },
+  { name: 'FAQ', href: '/#faq' },
+  { name: 'Contacto', href: '/#contacto' }
+];
+---
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+          <Heart class="w-6 h-6 text-white" />
+        </div>
+        <h1
+          id="logo-text"
+          class="text-xl font-bold transition-colors duration-300"
+        >
+          Nexo
+        </h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-8 gap-2"></nav>
+        {navigationItems.map((item) => (
+          <a
+            href={item.href}
+            class="font-medium transition-colors duration-200 hover:text-accent"
+            onClick={(e) => {
+              if (item.href.includes('#')) {
+                e.preventDefault();
+                const targetId = item.href.split('#')[1];
+                const el = document.getElementById(targetId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else window.location.href = item.href;
+              }
+            }}
+          >
+            {item.name}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden lg:block">
+        <button
+          id="cta-button"
+          class="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-2 px-6 rounded-lg shadow-soft hover:shadow-lg hover:scale-105 transition-all duration-300"
+        >
+          Solicitar Demo
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-toggle"
+        class="lg:hidden p-2 rounded-lg transition-colors duration-200 text-white hover:bg-white/10"
+        aria-label="Toggle mobile menu"
+      >
+        <Menu class="w-6 h-6" />
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobile-menu"
+      class="lg:hidden transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+    >
+      <div
+        class="py-4 space-y-2 bg-white/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-border/50"
+      >
+        {navigationItems.map((item) => (
+          <a
+            href={item.href}
+            class="block px-4 py-3 text-secondary font-medium hover:bg-primary/5 hover:text-primary transition-colors duration-200"
+          >
+            {item.name}
+          </a>
+        ))}
+        <div class="px-4 py-3">
+          <button
+            class="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-2 px-6 rounded-lg shadow-soft hover:shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Solicitar Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header')!;
+  const logoText = document.getElementById('logo-text')!;
+  const ctaButton = document.getElementById('cta-button')!;
+  const mobileToggle = document.getElementById('mobile-toggle')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+
+  let isScrolled = false;
+  let isMenuOpen = false;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 50;
+    if (scrolled !== isScrolled) {
+      isScrolled = scrolled;
+      if (isScrolled) {
+        header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-border/50');
+        header.classList.remove('bg-transparent');
+        logoText.classList.remove('text-white');
+        logoText.classList.add('text-secondary');
+        ctaButton.classList.add('btn-accent');
+      } else {
+        header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-border/50');
+        header.classList.add('bg-transparent');
+        logoText.classList.add('text-white');
+        logoText.classList.remove('text-secondary');
+        ctaButton.classList.remove('btn-accent');
+      }
+    }
+  });
+
+  mobileToggle.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu.classList.add('max-h-96', 'opacity-100');
+      mobileMenu.classList.remove('max-h-0', 'opacity-0');
+      mobileToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
+    } else {
+      mobileMenu.classList.add('max-h-0', 'opacity-0');
+      mobileMenu.classList.remove('max-h-96', 'opacity-100');
+      mobileToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+    }
+  });
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+
+  const handleNavLinkClick = (e: Event) => {
+    const target = e.currentTarget as HTMLAnchorElement;
+    const href = target.dataset.href;
+
+    if (href && href.includes('#')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        // Close mobile menu if open
+        if (isMenuOpen) {
+          mobileToggle.click();
+        }
+      } else {
+        window.location.href = href;
+      }
+    }
+  };
+
+  navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
+  navLinksMobile.forEach(link => link.addEventListener('click', handleNavLinkClick));
+</script>
