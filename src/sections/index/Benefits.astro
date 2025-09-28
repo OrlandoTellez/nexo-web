@@ -1,0 +1,154 @@
+---
+import {
+    Heart,
+    Building2,
+    TrendingUp,
+    Shield,
+    Clock,
+    Users,
+} from "lucide-astro";
+
+const patientBenefits = [
+    {
+        icon: Clock,
+        title: "Rapidez en atención",
+        description:
+            "Reduce significativamente los tiempos de espera y agiliza tu consulta médica",
+    },
+    {
+        icon: Users,
+        title: "Menos filas",
+        description:
+            "Evita aglomeraciones con nuestro sistema de fila virtual inteligente",
+    },
+    {
+        icon: Heart,
+        title: "Citas organizadas",
+        description:
+            "Programa y gestiona tus citas médicas de forma simple y eficiente",
+    },
+    {
+        icon: Shield,
+        title: "Información confiable",
+        description:
+            "Accede a tu historial médico de manera segura y siempre actualizada",
+    },
+];
+
+const hospitalBenefits = [
+    {
+        icon: TrendingUp,
+        title: "Control de agendas",
+        description:
+            "Gestión optimizada de horarios médicos y disponibilidad en tiempo real",
+    },
+    {
+        icon: Building2,
+        title: "Flujo ordenado",
+        description:
+            "Organización eficiente del flujo de pacientes y reducción de congestión",
+    },
+    {
+        icon: Shield,
+        title: "Reportes en tiempo real",
+        description:
+            "Estadísticas y análisis detallados para mejorar la toma de decisiones",
+    },
+    {
+        icon: Heart,
+        title: "Mejor atención",
+        description:
+            "Permite al personal médico enfocarse más en la atención al paciente",
+    },
+];
+---
+
+<section class="py-20 bg-gradient-to-br from-blue-50 to-cyan-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-6 text-secondary">
+                Beneficios para <span class="text-gradient-primary">todos</span>
+            </h2>
+            <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Una solución integral que mejora la experiencia tanto para
+                pacientes como para el personal médico y administrativo
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Patient Benefits */}
+            <div class="scroll-fade-in">
+                <div class="medical-card h-full">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="p-3 bg-primary/10 rounded-lg">
+                            <Heart class="w-8 h-8 text-primary" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-secondary">
+                            Para Pacientes
+                        </h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        {
+                            patientBenefits.map((benefit) => {
+                                const Icon = benefit.icon;
+                                return (
+                                    <div class="flex gap-4 group hover:bg-primary/5 p-4 rounded-lg transition-colors duration-300">
+                                        <div class="flex-shrink-0 p-2 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                                            <Icon class="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-secondary mb-1">
+                                                {benefit.title}
+                                            </h4>
+                                            <p class="text-muted-foreground text-sm">
+                                                {benefit.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+
+            {/* Hospital Benefits */}
+            <div class="scroll-fade-in">
+                <div class="medical-card h-full">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="p-3 bg-accent/10 rounded-lg">
+                            <Building2 class="w-8 h-8 text-accent" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-secondary">
+                            Para Hospitales
+                        </h3>
+                    </div>
+
+                    <div class="space-y-6">
+                        {
+                            hospitalBenefits.map((benefit, index) => {
+                                const Icon = benefit.icon;
+                                return (
+                                    <div class="flex gap-4 group hover:bg-accent/5 p-4 rounded-lg transition-colors duration-300">
+                                        <div class="flex-shrink-0 p-2 bg-accent/10 rounded-lg text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                                            <Icon class="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-secondary mb-1">
+                                                {benefit.title}
+                                            </h4>
+                                            <p class="text-muted-foreground text-sm">
+                                                {benefit.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
