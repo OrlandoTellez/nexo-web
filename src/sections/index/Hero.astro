@@ -1,0 +1,231 @@
+---
+import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
+---
+
+<!-- Hero Section -->
+<section
+    id="home"
+    class="relativeflex items-center overflow-hidden"
+    client:load
+>
+    <!-- Parallax Background -->
+    <div
+        id="parallax-bg"
+        class="absolute inset-0 bg-gradient-to-br from-[#161032] via-[#007DE4] to-[#00B4D8]"
+    >
+        <div
+            class="absolute inset-0 bg-[url('https://images.pexels.com/photos/7089020/pexels-photo-7089020.jpeg')] bg-cover bg-center opacity-10"
+        >
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-[#161032]/90 to-[#007DE4]/80"
+        >
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 max-w-[1200px] m-auto"
+    >
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Text Content -->
+            <div class="text-white space-y-8">
+                <div class="space-y-4">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium"
+                    >
+                        <span class="w-2 h-2 bg-[#FFBD3A] rounded-full mr-2"
+                        ></span>
+                        Innovación en Salud Pública
+                    </div>
+
+                    <h1
+                        class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight"
+                    >
+                        Paciente App
+                        <span
+                            class="block text-[#FFBD3A] text-3xl sm:text-4xl lg:text-5xl mt-2"
+                        >
+                            Modernizando la Atención Médica
+                        </span>
+                        <span
+                            class="block text-2xl sm:text-3xl lg:text-4xl mt-2 font-normal text-blue-200"
+                        >
+                            en Nicaragua
+                        </span>
+                    </h1>
+
+                    <p
+                        class="text-lg sm:text-xl text-blue-100 leading-relaxed max-w-2xl"
+                    >
+                        Un sistema digital que agiliza registros, filas
+                        virtuales y programación de citas médicas para brindar
+                        una experiencia más rápida, ordenada y humana.
+                    </p>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button
+                        class="group bg-[#FFBD3A] hover:bg-[#FFB020] text-[#161032] font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                    >
+                        Conoce cómo funciona
+                        <ArrowRight
+                            class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        />
+                    </button>
+
+                    <button
+                        class="group border-2 border-white/30 hover:border-white text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-300 backdrop-blur-md flex items-center justify-center"
+                    >
+                        <Play class="w-5 h-5 mr-2" />
+                        Ver demostración
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-6 pt-8">
+                    <div class="text-center">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-[#FFBD3A]"
+                        >
+                            50K+
+                        </div>
+                        <div class="text-sm text-blue-200">
+                            Pacientes registrados
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-[#FFBD3A]"
+                        >
+                            15+
+                        </div>
+                        <div class="text-sm text-blue-200">
+                            Hospitales activos
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="text-2xl sm:text-3xl font-bold text-[#FFBD3A]"
+                        >
+                            90%
+                        </div>
+                        <div class="text-sm text-blue-200">
+                            Menos tiempo de espera
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Mockup -->
+            <div class="relative">
+                <div
+                    class="relative z-10 flex items-center justify-center space-x-8"
+                >
+                    <!-- Mobile Mockup -->
+                    <div
+                        class="relative transform hover:scale-105 transition-transform duration-500"
+                    >
+                        <div
+                            class="w-64 h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl"
+                        >
+                            <div
+                                class="w-full h-full bg-white rounded-3xl overflow-hidden"
+                            >
+                                <div
+                                    class="bg-[#007DE4] h-20 flex items-center justify-center"
+                                >
+                                    <Smartphone class="w-8 h-8 text-white" />
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <div
+                                        class="h-4 bg-gray-200 rounded animate-pulse"
+                                    >
+                                    </div>
+                                    <div
+                                        class="h-4 bg-gray-200 rounded w-3/4 animate-pulse"
+                                    >
+                                    </div>
+                                    <div
+                                        class="h-20 bg-gradient-to-r from-[#007DE4]/20 to-[#FFBD3A]/20 rounded-lg"
+                                    >
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="h-3 bg-gray-200 rounded animate-pulse"
+                                        >
+                                        </div>
+                                        <div
+                                            class="h-3 bg-gray-200 rounded w-1/2 animate-pulse"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Preview -->
+                    <div
+                        class="hidden md:block relative transform hover:scale-105 transition-transform duration-500"
+                    >
+                        <div
+                            class="w-48 h-32 bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg p-1 shadow-xl"
+                        >
+                            <div
+                                class="w-full h-full bg-white rounded-lg overflow-hidden"
+                            >
+                                <div
+                                    class="bg-[#007DE4] h-6 flex items-center justify-center"
+                                >
+                                    <Monitor class="w-4 h-4 text-white" />
+                                </div>
+                                <div class="p-2 space-y-2">
+                                    <div
+                                        class="h-2 bg-gray-200 rounded animate-pulse"
+                                    >
+                                    </div>
+                                    <div
+                                        class="h-8 bg-gradient-to-r from-[#007DE4]/20 to-[#FFBD3A]/20 rounded"
+                                    >
+                                    </div>
+                                    <div
+                                        class="h-2 bg-gray-200 rounded w-2/3 animate-pulse"
+                                    >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+       
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce"
+    >
+        <div class="flex flex-col items-center space-y-2">
+            <span class="text-sm">Desliza para explorar</span>
+            <div
+                class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
+            >
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script para parallax -->
+<script>
+    const bg = document.getElementById("parallax-bg");
+    window.addEventListener("scroll", () => {
+        const scrollY = window.scrollY;
+        bg.style.transform = `translateY(${scrollY * 0.3}px)`;
+    });
+</script>
