@@ -6,7 +6,6 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 <section
     id="home"
     class="relativeflex items-center overflow-hidden"
-    client:load
 >
     <!-- Parallax Background -->
     <div
@@ -224,8 +223,12 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 <!-- Script para parallax -->
 <script>
     const bg = document.getElementById("parallax-bg");
-    window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
-        bg.style.transform = `translateY(${scrollY * 0.3}px)`;
-    });
+
+    if(bg != null){
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+            bg.style.transform = `translateY(${scrollY * 0.3}px)`;
+        });
+    }
+
 </script>
