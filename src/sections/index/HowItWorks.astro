@@ -1,0 +1,165 @@
+---
+import {
+  UserPlus,
+  Calendar,
+  Bell,
+  ArrowRight,
+  Smartphone,
+  Monitor,
+  Shield,
+  Hospital,
+  QrCode
+} from "lucide-astro";
+
+const steps = [
+  {
+    icon: Hospital,
+    title: "Llegas al Hospital",
+    subtitle: "Solicitas atención médica",
+    description:
+      "Te diriges a cualquier hospital público participante en el sistema y solicitas una cita médica en el área de admisiones.",
+    features: ["Cualquier hospital público", "Sin cita previa necesaria", "Atención personalizada"],
+    color: "from-primary via-blue-400 to-blue-300",
+    bgColor: "bg-primary/5",
+    illustration: Hospital
+  },
+  {
+    icon: UserPlus,
+    title: "Admisión te Registra",
+    subtitle: "El personal programa tu cita",
+    description:
+      "El equipo de admisiones registra tus datos y programa tu cita médica directamente desde su dispositivo móvil o sistema hospitalario.",
+    features: ["Registro rápido y eficiente", "Programación inmediata", "Datos seguros"],
+    color: "from-accent via-yellow-400 to-orange-300",
+    bgColor: "bg-accent/5",
+    illustration: UserPlus
+  },
+  {
+    icon: Smartphone,
+    title: "Recibes tu Acceso",
+    subtitle: "Código o enlace personal",
+    description:
+      "Te proporcionan un código único o enlace directo para que puedas acceder a tu portal de paciente desde cualquier dispositivo.",
+    features: ["Código único personal", "Acceso inmediato", "Compatible con cualquier dispositivo"],
+    color: "from-green-500 via-emerald-400 to-teal-300",
+    bgColor: "bg-green-500/5",
+    illustration: QrCode
+  },
+  {
+    icon: Calendar,
+    title: "Controlas tus Citas",
+    subtitle: "Desde tu teléfono móvil",
+    description:
+      "Ya puedes ver todas tus citas programadas, turnos en tiempo real, recibir recordatorios y gestionar tu atención médica.",
+    features: ["Citas en tiempo real", "Turnos actualizados", "Recordatorios automáticos"],
+    color: "from-purple-500 via-violet-400 to-indigo-300",
+    bgColor: "bg-purple-500/5",
+    illustration: Calendar
+  },
+  {
+    icon: Bell,
+    title: "Recibe Notificaciones",
+    subtitle: "Mantente siempre informado",
+    description:
+      "El sistema te envía recordatorios, actualizaciones de turnos y confirmaciones para que nunca pierdas una cita médica.",
+    features: ["Recordatorios inteligentes", "Actualizaciones en vivo", "Confirmaciones automáticas"],
+    color: "from-warning via-red-400 to-pink-300",
+    bgColor: "bg-warning/5",
+    illustration: Bell
+  }
+];
+---
+
+<section id="how-it-works" class="py-24 bg-secondary relative overflow-hidden bg-[#13142b]">
+
+  <!-- Floating Elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <Monitor class="absolute top-20 right-20 w-8 h-8 text-white/10 animate-float" />
+    <Smartphone class="absolute bottom-40 left-20 w-6 h-6 text-white/10 animate-float" style="animation-delay:1s;" />
+    <Shield class="absolute top-1/3 right-1/4 w-10 h-10 text-white/10 animate-float" style="animation-delay:2s;" />
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-8">
+        <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+        <span class="text-white/90 font-medium">Proceso del Sistema Nexo</span>
+      </div>
+
+      <h2 class="text-5xl font-bold mb-8 text-white">
+        ¿Cómo <span class="text-gradient-accent">funciona</span> el sistema?
+      </h2>
+      <p class="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+        Desde tu llegada al hospital hasta el control total de tus citas médicas:
+        un proceso simple que comienza con el personal y termina en tus manos
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="space-y-16">
+      {steps.map((step, index) => (
+        <div class="scroll-fade-in" style={`animation-delay:${index * 0.2}s`}>
+          <div class={`relative overflow-hidden rounded-3xl ${step.bgColor} backdrop-blur-sm border border-white/10 p-8 lg:p-12 hover:scale-[1.02] transition-all duration-500 group`}>
+            
+            <div class="absolute top-0 right-0 opacity-20">
+              <step.illustration class="w-16 h-16" />
+            </div>
+
+            <div class="absolute top-6 left-6 lg:top-8 lg:left-8">
+              <div class="flex items-center justify-center w-12 h-12 bg-white/20 rounded-2xl backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                <span class="text-xl font-bold text-white">{index + 1}</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div class="lg:col-span-7 pt-16 lg:pt-0">
+                <h3 class="text-3xl lg:text-4xl font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">
+                  {step.title}
+                </h3>
+                <p class="text-white text-lg font-medium mb-4">
+                  {step.subtitle}
+                </p>
+                <p class="text-white/90 text-lg leading-relaxed">
+                  {step.description}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                  {step.features.map(feature => (
+                    <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg p-3 hover:bg-white/20 transition-colors duration-300">
+                      <ArrowRight class="w-4 h-4 text-accent" />
+                      <span class="text-white/90 text-sm font-medium">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Icon -->
+              <div class="lg:col-span-5 flex justify-center">
+                <div class="relative">
+                  <div class={`relative w-32 h-32 lg:w-40 lg:h-40 rounded-3xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-all duration-500 group-hover:rotate-6`}>
+                    <step.icon class="w-10 h-10" />
+                    <div class={`absolute inset-0 rounded-3xl bg-gradient-to-br ${step.color} opacity-50 blur-xl -z-10 group-hover:opacity-80 transition-opacity duration-500`}></div>
+                  </div>
+
+                  <div class="absolute -top-3 -right-3 w-6 h-6 bg-accent rounded-full animate-bounce opacity-80"></div>
+                  <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-warning rounded-full animate-bounce opacity-60"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const bg = document.getElementById('parallax-bg');
+  window.addEventListener('scroll', () => {
+    if (!bg) return;
+    const scrollY = window.scrollY;
+    bg.style.transform = `translateY(${scrollY * 0.15}px)`;
+  });
+</script>

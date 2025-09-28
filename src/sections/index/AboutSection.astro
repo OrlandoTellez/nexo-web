@@ -1,0 +1,79 @@
+---
+import { CheckCircle, Users, Clock, Shield, BarChart } from 'lucide-astro';
+
+const benefits = [
+  {
+    icon: Clock,
+    text: "Reduce aglomeraciones y tiempos de espera"
+  },
+  {
+    icon: Users,
+    text: "Mejora la experiencia del paciente"
+  },
+  {
+    icon: BarChart,
+    text: "Optimiza el trabajo del personal médico"
+  },
+  {
+    icon: Shield,
+    text: "Permite seguimiento digital de citas e historial básico"
+  }
+];
+---
+
+<section class="w-full py-20 section-gradient relative z-90 py-20 section-gradient bg-white">
+  <div class="w-full max-w-[var(--ancho-maximo)] m-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Text Content -->
+      <div class="scroll-fade-in">
+        <h2 class="text-4xl font-bold mb-6 text-secondary">
+          Una solución para <span class="text-gradient-primary">todos</span>
+        </h2>
+        
+        <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+          Nexo automatiza el registro de pacientes, citas médicas y 
+          flujo de atención en hospitales públicos, creando un sistema más
+          eficiente y humano para toda la comunidad médica nicaragüense.
+        </p>
+
+        <!-- Benefits List -->
+        <div class="space-y-4">
+          {benefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <div 
+                class="flex items-center gap-4 p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors duration-300"
+              >
+                <div class="flex-shrink-0 p-2 bg-primary/10 rounded-lg text-primary">
+                  <Icon class="w-6 h-6" />
+                </div>
+                <span class="text-secondary font-medium">{benefit.text}</span>
+                <CheckCircle class="w-5 h-5 text-green-500 ml-auto" />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Illustration -->
+      <div class="scroll-fade-in">
+        <div class="relative">
+          <div class="medical-card p-12 text-center">
+            <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-primary to-primary-light rounded-full flex items-center justify-center">
+              <Users class="w-16 h-16 text-black" />
+            </div>
+            <h3 class="text-2xl font-bold text-secondary mb-4">
+              Conectando Pacientes y Profesionales
+            </h3>
+            <p class="text-muted-foreground">
+              Una plataforma integral que une tecnología y atención humana 
+              para revolucionar la salud pública en Nicaragua.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
