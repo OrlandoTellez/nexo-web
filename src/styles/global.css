@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+:root {
+    --primary-color: #007DE4;
+    --third-color: #FFBD3A;
+    --ancho-maximo: 1300px;
+}
+
+
 * {
 	box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
 }

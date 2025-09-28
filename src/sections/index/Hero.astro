@@ -2,11 +2,7 @@
 import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 ---
 
-<!-- Hero Section -->
-<section
-    id="home"
-    class="relativeflex items-center overflow-hidden"
->
+<section id="home" class="relativeflex items-center overflow-hidden pt-20">
     <!-- Parallax Background -->
     <div
         id="parallax-bg"
@@ -24,7 +20,7 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 
     <!-- Content -->
     <div
-        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 max-w-[1200px] m-auto"
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[var(--ancho-maximo)] m-auto"
     >
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <!-- Text Content -->
@@ -65,25 +61,28 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 
                 <!-- CTAs -->
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button
-                        class="group bg-[#FFBD3A] hover:bg-[#FFB020] text-[#161032] font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                    <a
+                        href="#"
+                        class="group bg-[#FFBD3A] hover:bg-[#FFB020] text-[#161032] font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center p-2"
                     >
                         Conoce cómo funciona
                         <ArrowRight
                             class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
                         />
-                    </button>
+                    </a>
 
-                    <button
-                        class="group border-2 border-white/30 hover:border-white text-white hover:bg-white/10 font-semibold rounded-xl transition-all duration-300 backdrop-blur-md flex items-center justify-center"
+                    <a
+                        href="#"
+                        
+                        class="group border-2 border-white/30 hover:border-white text-white hover:bg-white/10 font-semibold rounded-xl transition-all duration-300 backdrop-blur-md flex items-center justify-center p-2"
                     >
                         <Play class="w-5 h-5 mr-2" />
                         Ver demostración
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Stats -->
-                <div class="grid grid-cols-3 gap-6 pt-8">
+                <div class="grid grid-cols-3 gap-6">
                     <div class="text-center">
                         <div
                             class="text-2xl sm:text-3xl font-bold text-[#FFBD3A]"
@@ -198,8 +197,6 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
                         </div>
                     </div>
                 </div>
-
-       
             </div>
         </div>
     </div>
@@ -224,11 +221,10 @@ import { ArrowRight, Play, Smartphone, Monitor } from "lucide-astro";
 <script>
     const bg = document.getElementById("parallax-bg");
 
-    if(bg != null){
+    if (bg != null) {
         window.addEventListener("scroll", () => {
             const scrollY = window.scrollY;
             bg.style.transform = `translateY(${scrollY * 0.3}px)`;
         });
     }
-
 </script>
