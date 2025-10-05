@@ -13,7 +13,7 @@ const navigationItems = [
 
 <header
   id="main-header"
-  class="w-full fixed top-0 left-0 right-0 z-100 bg-transparent transition-colors duration-300 m-auto"
+  class="w-full fixed top-0 border-none left-0 right-0 z-100 bg-transparent transition-colors duration-300 m-auto"
 >
   <div class="max-w-[var(--ancho-maximo)] "></div>
     <div class="flex items-center max-w-[var(--ancho-maximo)] px-4 sm:px-6 lg:px-8  m-auto justify-between h-16 lg:h-20">
@@ -38,7 +38,7 @@ const navigationItems = [
         {navigationItems.map((item) => (
           <a
             href={item.href}
-            class="nav-link nav-link-desktop font-medium transition-colors duration-200 hover:text-accent text-white"
+            class="nav-link nav-link-desktop font-medium transition-colors duration-200 hover:text-accent text-white transition-colors"
           >
             {item.name}
           </a>
@@ -61,7 +61,7 @@ const navigationItems = [
         class="lg:hidden p-2 rounded-lg transition-colors duration-200 text-white hover:bg-white/10"
         aria-label="Toggle mobile menu"
       >
-        <Menu class="w-6 h-6" />
+        <Menu id="menu-icon" class="w-6 h-6 text-white" />
       </button>
     </div>
 
@@ -83,7 +83,7 @@ const navigationItems = [
         ))}
         <div class="px-4 py-3">
           <button
-            class="w-full bg-black hover:bg-accent/90 text-accent-foreground font-semibold py-2 px-6 rounded-lg shadow-soft hover:shadow-lg hover:scale-105 transition-all duration-300"
+            class="w-full bg-[var(--third-color)] hover:bg-accent/90 text-accent-foreground font-semibold py-2 px-6 rounded-lg shadow-soft hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             Solicitar Demo
           </button>
@@ -98,6 +98,7 @@ const navigationItems = [
   const logoText = document.getElementById('logo-text')!;
   const logoIcon = document.getElementById('logo-icon')!;
   const mobileToggle = document.getElementById('mobile-toggle')!;
+  const menuIcon = document.getElementById('menu-icon')!;
   const mobileMenu = document.getElementById('mobile-menu')!;
   const navLinksDesktop = document.querySelectorAll('.nav-link-desktop');
   const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
@@ -118,6 +119,9 @@ const navigationItems = [
 
         logoText.classList.remove('text-white');
         logoText.classList.add('text-secondary');
+        menuIcon.classList.remove('text-white');
+        menuIcon.classList.add('text-black');
+
 
         const logoSvg = logoIcon.querySelector('svg');
         if (logoSvg) {
@@ -135,6 +139,9 @@ const navigationItems = [
 
         logoText.classList.add('text-white');
         logoText.classList.remove('text-secondary');
+
+        menuIcon.classList.add('text-white');
+        menuIcon.classList.remove('text-black');
 
         const logoSvg = logoIcon.querySelector('svg');
         if (logoSvg) {
@@ -154,23 +161,13 @@ const navigationItems = [
   mobileToggle.addEventListener('click', () => {
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
-      mobileMenu.classList.add('max-h-96', 'opacity-100');
+      mobileMenu.classList.add('max-h-120', 'opacity-100');
       mobileMenu.classList.remove('max-h-0', 'opacity-0');
-      mobileToggle.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"/>
-        </svg>`;
+     
     } else {
       mobileMenu.classList.add('max-h-0', 'opacity-0');
-      mobileMenu.classList.remove('max-h-96', 'opacity-100');
-      mobileToggle.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>`;
+      mobileMenu.classList.remove('max-h-120', 'opacity-100');
+     
     }
   });
 
