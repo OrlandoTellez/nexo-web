@@ -1,0 +1,130 @@
+---
+import { ChevronDown, ChevronUp, HelpCircle } from "lucide-astro";
+const faqs = [
+  {
+    question: "¿Cómo obtengo acceso a Nexo como paciente?",
+    answer:
+      "Cuando llegas al hospital y el personal de admisión programa tu cita médica, automáticamente recibirás un código de acceso o enlace para ingresar a tu portal de paciente en Nexo. No necesitas registrarte previamente, todo se activa desde el momento de tu primera cita.",
+  },
+  {
+    question: "¿Qué puedo hacer desde mi portal de paciente?",
+    answer:
+      "Desde tu teléfono o cualquier dispositivo puedes ver todas tus citas programadas, consultar tu turno en tiempo real, recibir notificaciones cuando se acerque tu hora de atención, y acceder a tu perfil médico básico con información de tus consultas anteriores.",
+  },
+  {
+    question: "¿Cómo sé cuándo es mi turno de atención?",
+    answer:
+      "Nexo te muestra en tiempo real tu posición en la cola de espera. Recibirás notificaciones automáticas cuando te falten pocos turnos, permitiéndote organizar tu tiempo y evitar largas esperas en sala. Ya no necesitas estar pegado al monitor de turnos.",
+  },
+  {
+    question: "¿Es seguro el manejo de mi información médica en Nexo?",
+    answer:
+      "Absolutamente. Utilizamos los más altos estándares de seguridad y encriptación para proteger tu información. Solo tú y el personal médico autorizado del hospital pueden acceder a tus datos. Cumplimos con todas las normativas de protección de datos de salud.",
+  },
+  {
+    question: "¿Qué beneficios obtiene el hospital con Nexo?",
+    answer:
+      "Los hospitales logran una gestión más eficiente de sus agendas médicas, reducción significativa de congestión en recepción, mejor flujo de pacientes, disminución de tiempos de espera, y acceso a reportes en tiempo real para optimizar recursos y mejorar la experiencia del paciente.",
+  },
+  {
+    question: "¿Qué hago si pierdo mi código de acceso?",
+    answer:
+      "Puedes solicitar un nuevo código de acceso directamente en la recepción del hospital. El personal de admisión puede reenviarte el enlace de acceso a tu correo o número de teléfono registrado en el sistema.",
+  },
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <HelpCircle class="w-8 h-8 text-primary" />
+        <h2 class="text-4xl font-bold text-secondary">
+          Preguntas <span class="text-gradient-primary">Frecuentes</span>
+        </h2>
+      </div>
+      <p class="text-xl text-muted-foreground">
+        Resolvemos las dudas más comunes sobre Nexo
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {
+        faqs.map((faq) => (
+          <div class="medical-card">
+            <button
+              class="faq-btn w-full flex items-center justify-between text-left p-6 hover:bg-primary/5 transition-colors duration-200"
+              aria-expanded="false"
+            >
+              <h3 class="text-lg font-semibold text-secondary pr-4">
+                {faq.question}
+              </h3>
+              <div class="flex-shrink-0 icon-wrapper transition-transform duration-200">
+                <ChevronDown class="w-5 h-5 text-primary" />
+                <ChevronUp class="w-5 h-5 text-primary hidden" />
+              </div>
+            </button>
+
+            <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+              <div class="border-t border-border/50 px-6 pb-6 pt-4">
+                <p class="text-muted-foreground leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqButtons = document.querySelectorAll(".faq-btn");
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      const content = btn.nextElementSibling;
+      const icons = btn.querySelector(".icon-wrapper");
+
+      // Cerrar todos los demás
+      document.querySelectorAll(".faq-btn").forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        const wrap = b.querySelector(".icon-wrapper");
+        if (wrap) {
+          const chevronDown = wrap.querySelector("svg:nth-child(1)");
+          const chevronUp = wrap.querySelector("svg:nth-child(2)");
+
+          if (chevronDown) {
+            chevronDown.classList.remove("hidden"); // ChevronDown
+          }
+          if (chevronUp) {
+            chevronUp.classList.add("hidden"); // ChevronUp
+          }
+        }
+        if (b.nextElementSibling instanceof HTMLElement) {
+          b.nextElementSibling.style.maxHeight = "";
+        }
+      });
+
+      // Si no estaba abierto, abrir este
+      if (!isOpen) {
+        btn.setAttribute("aria-expanded", "true");
+        if (icons) {
+          const chevronDown = icons.querySelector("svg:nth-child(1)");
+          const chevronUp = icons.querySelector("svg:nth-child(2)");
+          if (chevronDown) {
+            chevronDown.classList.add("hidden");
+          }
+          if (chevronUp) {
+            chevronUp.classList.remove("hidden");
+          }
+        }
+        if (content instanceof HTMLElement) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      }
+    });
+  });
+</script>
