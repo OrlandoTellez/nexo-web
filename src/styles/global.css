@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* usar fuente que esta en la carpeta fonts*/
+
+@font-face {
+	font-family: "Nexa Light";
+	src: url("../fonts/nexa/Nexa-ExtraLight.ttf");
+    font-weight: 900;
+}
+
+@font-face {
+	font-family: "Nexa";
+	src: url("../fonts/nexa/Nexa-Heavy.ttf");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Manrope";
+	src: url("../fonts/manrope/Manrope-Medium.otf");
+	font-weight: 300;
+}
+
 :root {
     --primary-color: #007DE4;
     --third-color: #FFBD3A;
@@ -9,6 +29,23 @@
 
 * {
 	box-sizing: border-box;
+}
+
+body {
+	background-color: #F5F5F5;
+	color: #333333;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Nexa", sans-serif;
+	font-weight: 300;
+}
+
+p, li, a, button {
+	font-family: "Manrope", sans-serif;
+	font-weight: 300;
 }
 
 button {
